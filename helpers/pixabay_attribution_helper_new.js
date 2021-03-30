@@ -100,7 +100,7 @@ $(function() {
 
 
             $('small').each(function(index, el) {
-                $(this).html(statement + ', <a href="https://creativecommons.org/licenses/by/3.0/au/" target="_blank">CC BY 3.0 AU</a>.');
+                $(this).html(statement + ', <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.en" target="_blank">CC BY-SA 4.0</a>.');
             });
 
             $('#embedder button').click(function(event) {
