@@ -27,7 +27,7 @@ $(function() {
 
         if (statement.length > 0) {
 
-            var api_key = "11445-7c3e3173d6f9a6047e64583ca";
+            var api_key = "20936957-df8ee59e273ede99f01a341f8";
             var endpoint = "https://pixabay.com/api/?key=" + api_key + "&id=" + utm;
             console.log("@GB: endpoint = ", endpoint);
             // Call api
@@ -100,7 +100,7 @@ $(function() {
 
 
             $('small').each(function(index, el) {
-                $(this).html(statement + ', <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.en" target="_blank">CC BY-SA 4.0</a>.');
+                $(this).html(statement + ', <a href="https://creativecommons.org/licenses/by/3.0/au/" target="_blank">CC BY 3.0 AU</a>.');
             });
 
             $('#embedder button').click(function(event) {
