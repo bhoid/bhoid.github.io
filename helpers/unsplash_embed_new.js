@@ -53,7 +53,7 @@ $(function() {
             today = dd + '/' + mm + '/' + yyyy;
 
             // Create attribution statement
-            var dom = '<a href="' + addr + '" target="_blank">Photo</a> by <a href="https://unsplash.com/' + user + '" target="_blank">' + user + '</a> on <a href="https://unsplash.com/license" target="_blank">Unsplash</a>, <a href="https://creativecommons.org/licenses/by/3.0/au/" target="_blank">CC BY 3.0 AU</a>.';
+            var dom = '<a href="' + addr + '" target="_blank">Image</a> by <a href="https://unsplash.com/' + user + '" target="_blank">' + user + '</a> from <a href="https://unsplash.com/license" target="_blank">Unsplash</a>, <a href="https://creativecommons.org/licenses/by/3.0/au/" target="_blank">CC BY 3.0 AU</a>.';
 
             // Establish Unsplash image path
             var img_lge = decodeURIComponent(url.searchParams.get("img"));
