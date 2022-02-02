@@ -1,0 +1,192 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="#">
+    <meta name="author" content="#">
+    <title>Image attribution maker.</title>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<style>
+	.button-group>button.default, .btn.btn-primary {color: #fff; background-color: #170052; border-color: #170052;}
+	.nav-pills a.nav-link.active {background: #170052;color: #fff!important;}
+	.btn-link, .fake-link {color: #170052;}
+	li.nav-item, div#v-tabs-tab {color: #170052; font-weight: 700;}
+	</style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark"> <a class="navbar-brand" href="#">Image attribution maker</a> <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"> </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item"> <a class="nav-link" href="#right">Float Right</a> </li>
+                <li class="nav-item"> <a class="nav-link" href="#left">Float Left</a> </li>
+		<li class="nav-item"> <a class="nav-link" href="#center">Centered</a> </li>
+                <li class="nav-item"> <a class="nav-link" href="#large">Full-screen</a> </li>
+                <li class="nav-item"> <a class="nav-link" href="#overlay">Text Overlay</a> </li>
+            </ul>
+        </div>
+	<a href="https://mpedtech.github.io/helpers/ui-elements.html" target="_blank" class="btn btn-outline-light" class="stretched-link" role="button" aria-expanded="false">
+            Re-usable UI elements
+        </a>
+    </nav>
+	
+    <div class="clearfix"></div>
+    <!-- Marketing messaging and featurettes ================================================== -->
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+    <div class="container marketing" style="margin-top: 100px">
+        <h1 class="display-4">Image embedder and attribution maker</h1>
+        <h2 class="display-5">for <a href="https://unsplash.com/" target="_blank">Unsplash</a>, <a href="https://pixabay.com/" target="_blank">Pixabay</a>, <a href="https://www.pexels.com/" target="_blank">Pexels</a> and <a href="https://commons.wikimedia.org/wiki/Main_Page" target="_blank">Wikimedia Commons</a></h2>
+        <p class="lead">A Bookmarklet to create HTML snippets to embed Unsplash, Pixabay or Wikimedia Commons images, with proper attribution. These can be pasted into any HTML editor.</p>
+
+
+        <div class="firsttime-warning alert alert-danger collapse">
+            <h3>First time user?</h3>
+            <p>Follow the instuctions below</p>
+        </div>
+
+
+        <p> <button class="btn btn-lg btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"> First time? Click here for setup instructions. </button> </p>
+        <div class="collapse" id="collapseExample">
+            <div class="card card-body">
+                <h2>First time user?</h2>
+                <ol>
+                    <li><strong>Drag</strong> the following bookmarklet into your browers bookmark bar: <a class="bookmarklet" href="javascript:(function()%7Bvar%20url%20%3D%20'https%3A%2F%2Fmpedtech.github.io%2Fhelpers%2Fattribution_maker%3Faddr%3D'%2BencodeURIComponent(document.location.href)%2B'%26title%3D'%2BencodeURIComponent(document.title)%3Bwindow.open(url%2C'_blank')%7D)()">MP Attribution maker</a>
+                        <br>(Note: Make sure you drag the link onto your browser bookmarks. Clicking will just bring you back to here)</li>
+                    <li>Visit <a href="https://unsplash.com/" target="_blank">Unsplash</a>, <a href="https://pixabay.com/" target="_blank">Pixabay</a>, <a href="https://www.pexels.com/" target="_blank">Pexels</a> or <a href="https://commons.wikimedia.org/wiki/Main_Page" target="_blank">Wikimedia Commons</a> and find your favourite image</li>
+                    <li>Click on the 'MP Attribution maker' in your bookmarks</li>
+                    <li>You will be returned to this page, but now your selected image will be displayed below</li>
+                    <li>Press the copy button next to the layout type that you prefer. This will copy the HTML to your clipboard</li>
+                    <li>Paste this HTML anywhere that you can paste code (eg a Moodle page or tool)</li>
+                    <li>Ready to go? <a href="https://unsplash.com/" target="_blank">Unsplash</a>, <a href="https://pixabay.com/" target="_blank">Pixabay</a>, <a href="https://www.pexels.com/" target="_blank">Pexels</a> or <a href="https://commons.wikimedia.org/wiki/Main_Page" target="_blank">Wikimedia Commons</a>, select an image that you like and then press on the "<a class="bookmarklet" href="javascript:(function()%7Bvar%20url%20%3D%20'https%3A%2F%2Fmpedtech.github.io%2Fhelpers%2Fattribution_maker%3Faddr%3D'%2BencodeURIComponent(document.location.href)%2B'%26title%3D'%2BencodeURIComponent(document.title)%3Bwindow.open(url%2C'_blank')%7D)()">MP Attribution maker</a>"</li>
+                </ol>
+                <h3>Show me how (Screen Video Tutorial)</h3>
+                <div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.2493%;"><iframe src="//cdn.iframe.ly/api/iframe?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DBNlEK-6ef4o&amp;key=c46013d31771189d4639a29af622a1f2" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" allowfullscreen scrolling="no"></iframe></div>
+            </div>
+        </div>
+        <div class="pixabay-warning alert alert-danger collapse">
+            <h3>Important note - Pixabay previews expire in 24hrs</h3>
+            <p>Pixabay does not allow hot-linking (embedding) and their previews will expire within 24 hrs</p>
+            <p>To protect against this, ensure that you:</p>
+            <ol>
+                <li>Download the appropriately sized image</li>
+                <li>Upload this to Moodle (or other system) to replace the preview</li>
+            </ol>
+        </div>
+        <!-- Three columns of text below the carousel -->
+        <!-- /.row -->
+        <!-- START THE FEATURETTES -->
+        <div id="embedder">
+            <hr class="featurette-divider clearfix" id="right">
+
+            <!-- Start of collapser -->
+            <!-- <div class="float-right mb-4"> Show image attribution as: 
+              <div id="source-open" class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons"> 
+                <label class="btn btn-outline-primary active"> <input id="start-shown" type="radio" name="options" id="option2" autocomplete="off" value="Shown" checked> Always visible </label>
+		<label class="btn btn-outline-primary"> <input id="start-hidden" type="radio" name="options" id="option3" autocomplete="off" value="Collapsed"> Collapsed </label>
+              </div>
+            </div> -->
+            <!-- End of image collapser -->
+
+            <div class="clearfix container-fluid"></div>
+
+            <!-- Start of image resizer -->
+            <div class="float-right mb-4"> Relative size of floated images: <div id="resizer" class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons"> <label class="btn btn-outline-primary"> <input id="col-6" type="radio" name="options" id="option1" autocomplete="off" value="50%"> 50% </label> <label class="btn btn-outline-primary active"> <input id="col-5" type="radio" name="options" id="option3" autocomplete="off" value="42%"> 42% </label> <label class="btn btn-outline-primary"> <input id="col-4" type="radio" name="options" id="option3" autocomplete="off" value="33%" checked> 33% </label> <label class="btn btn-outline-primary"> <input id="col-3" type="radio" name="options" id="option3" autocomplete="off" value="25%"> 25% </label> </div>
+            </div>
+            <!-- End of image resizer -->
+
+            <div class="clearfix container-fluid"></div>
+
+            <div class="clearfix">
+<div class="maker-copy maker-floated maker-fr">
+<!-- Start of Image Embed - Float Right -->
+<figure class="figure border rounded p-1 bg-light text-right float-right col-5 ml-4">
+    <img src="https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Loading+image" class="img-responsive img-fluid">
+</figure>
+<!-- End of Image Embed - Float Right -->
+</div>
+                <h2 class="featurette-heading">Float Right (Image to the right of text)</h2>
+                <p class="lead">Image will occupy <strong class="percent">42%</strong> of the available space.
+                    <br> The image will resize and the text will reflow as you resize the browser.</p>
+                <p>The following placeholder text is included to show the realtionship between the image and text.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p> <button id="maker-fr" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button><a class="btn btn-outline-primary download" href="" title="img-sml"> <i class="fa fa-download"></i>
+                    Download small image
+                </a>
+            </div>
+            <hr class="featurette-divider clearfix" id="left">
+            <div class="clearfix">
+<div class="maker-copy maker-floated maker-fl">
+<!-- Start of Image Embed - Float Left -->
+<figure class="figure border rounded p-1 bg-light text-right float-left col-5 mr-4">
+    <img src="https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Loading+image" class="img-responsive img-fluid">
+</figure>
+<!-- End of Image Embed - Float Left -->
+</div>
+                <h2 class="featurette-heading">Float Left (Image to the left of text)</h2>
+                <p class="lead">Image will occupy <strong class="percent">42%</strong> of the available space.
+                    <br> The image will resize and the text will reflow as you resize the browser.</p>
+                <p>The following placeholder text is included to show the realtionship between the image and text.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p> <button id="maker-fl" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button><a class="btn btn-outline-primary download" href="" title="img-sml"> <i class="fa fa-download"></i>
+                    Download small image
+                </a>
+            </div>
+	    <hr class="featurette-divider clearfix" id="large">
+            <div class="clearfix">
+                <h2 class="featurette-heading">Full width (Image above or below text)</h2>
+                <p class="lead">Image will occupy 100% of the available space</p><button id="maker-lg" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button><a class="btn btn-outline-primary download" href="" title="img-lge"> <i class="fa fa-download"></i>
+                    Download large image
+                </a>
+                <div class="clearfix">
+<div class="maker-copy maker-lg">
+<!-- Start of Image Embed - Full screen -->
+<figure class="figure border rounded p-1 bg-light text-right col-12">
+    <img src="https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Loading+image" class="img-responsive img-fluid">
+</figure>
+<!-- End of Image Embed - Full screen -->
+</div>
+                </div>
+                <hr class="featurette-divider clearfix" id="overlay">
+                <div class="clearfix">
+                    <h2 class="featurette-heading">Full width, with text overlay (Custom text overlay)</h2>
+                    <p class="lead">Image will occupy 100% of the available space. Text overlay can be edited by you, after embedding</p> <button id="maker-ov" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button><a class="btn btn-outline-primary download" href="" title="img-lge"> <i class="fa fa-download"></i>
+                        Download large image
+                    </a>
+<div class="maker-copy maker-ov">
+<!-- Start of Embed Code - Full-width, with text overlay -->
+<div class="overlay" style="position: relative;">
+    <figure class="figure border rounded p-1 bg-light text-right col-12">
+        <img src="https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Loading+image" class="img-responsive img-fluid">
+    </figure>
+    <div class="text-overlay" style="text-align: center; color: white !important; text-shadow: 2px 2px 4px #000000; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%">
+        <p style="font-size: calc( 12px + (40 - 16) * ( 80vw / (1000 - 400) )) !important; line-height: calc( 20px + (32 - 16) * ( 80vw / (1000 - 400) )) !important;">Text overlay goes here</p>
+        <p style="font-size: calc( 12px + (24 - 16) * ( 60vw / (1000 - 400) )) !important; line-height: calc( 10px + (20 - 10) * ( 80vw / (1000 - 400) )) !important;">Optional byline or citation goes here. Delete if not required.</p>
+    </div>
+</div>
+<!-- End of Embed code - Full-width, with text overlay -->
+</div>
+                </div>
+            </div>
+            <!-- /END THE FEATURETTES -->
+            <!-- FOOTER -->
+
+            <hr>
+
+            <footer class="page-footer">
+                <p class="float-right"><a href="#">Back to top</a></p>
+                <p>'<a href="https://birdyoz.github.io/helpers/attribution_maker.html" target="_blank">Image embedder and attribution maker</a>' originally developed by Greg Bird (@BirdyOz) | <a href="https://twitter.com/BirdyOz" target="_blank">Twitter</a> | <a href="https://www.linkedin.com/in/birdyoz/" target="_blank">LinkedIn</a> | <a href="https://www.youtube.com/BirdyOz" target="_blank">YouTube</a> | <a href="mailto:greg.bird.oz@gmail.com">email</a></p>
+            </footer>
+        </div>
+        <!-- /.container -->
+        <!-- Bootstrap core JavaScript ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="attribution_maker.js"></script>
+</body>
+
+</html>
