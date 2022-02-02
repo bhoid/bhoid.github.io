@@ -1,41 +1,29 @@
 /*
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
- * @Last Modified by:   MPEdTech
- * @Last Modified time: 2021-09-13 07:50:57
- * @Last Modified time: 2022-01-31 11:05:00
+ * @Last Modified by:   BirdyOz
+ * @Last Modified time: 2022-01-27 16:10:36
  */
 
 $(function() {
 
     // Get current date string
     let today = todaysDate();
-    let site = "";
-    let site_url = "";
     let site = ""; // Image site
     let site_url = ""; // Primary site URL
     let id = ""; // Image ID
-    let img_name = "Image"; // Image name.   Default to "Photo"
-    let img_name = "Image"; // Image name.   Default to "Image"
+    let img_name = "Photo"; // Image name.   Defualt to "Photo"
     let img_orig = ""; // Link to original image
     let img_src = ""; // src of image to be displayed in page
-    let download_sml = ""; // Small image 960px wide
-    let download_lge = ""; // Large image 1920px wide
-    let alt = "";
-    let user = "";
-    let user_url = "";
-    let licence = "";
-    let licence_url = "";
     let download_sml = ""; // Small image 720px wide
     let download_lge = ""; // Large image 1440px wide
     let alt = ""; // alternative text
-    let user = ""; // username
+    let user = ""; //username
     let user_url = ""; //URL to user profile
     let licence = ""; // Licence type, eg "Free to use|Public Domain|CC-BY" etc.
     let licence_url = ""; // Link to licence
-    let title = null; //If a title is set, this will be used
-    let startCollapsed = false;
-    let startCollapsed = false; // Default to non-collapsed view
+    let title = null; //If tyhe image has a title, then this will be used
+    let startCollapsed = true; // Default to collapsed view
     let org = null; // to cater for organisation specific changes
     let width = "col-5"; // Default width for floated images
     let json = ""; // JSON Object returned by API call
@@ -89,11 +77,27 @@ $(function() {
     // Get URL parameters
     url_string = window.location.href;
     if (url_string.indexOf("?") > 0) {
-@@ -47,6 +96,22 @@ $(function() {
-            site = "Pexels";
-            console.log("@GB: site = ", site);
+
+        // Get image address
+        url = new URL(url_string);
+        img_orig = url.searchParams.get("addr");
+
+
+        // Detect site
+        if (img_orig.includes('unsplash.com')) {
+            site = "Unsplash";
         }
-         if (img_orig.includes('flickr.com')) {
+        if (img_orig.includes('pixabay.com')) {
+            site = "Pixabay";
+            $('.pixabay-warning').show();
+        }
+        if (img_orig.includes('wikimedia.org')) {
+            site = "Wikimedia Commons";
+        }
+        if (img_orig.includes('pexels.com')) {
+            site = "Pexels";
+        }
+        if (img_orig.includes('flickr.com')) {
             site = "Flickr";
         }
         if (img_orig.includes('shutterstock.com')) {
@@ -111,6 +115,7 @@ $(function() {
         }
 
     } else {
+        // No URL parameters exist.   Show first time warning
         console.log("@GB: No parameters");
         $('.firsttime-warning').show();
         $('#collapseExample').show();
@@ -122,23 +127,22 @@ $(function() {
         // Get image ID
         n = img_orig.lastIndexOf('/');
         id = img_orig.substring(n + 1);
-        site_url = "https://unsplash.com";
-        licence = "Licence";
-        licence_url = "https://unsplash.com/license";
 
-        key = "336b527b2e18d045045820b78062b95c825376311326b2a08f9b93eef7efc07b"
+        site_url = "https://unsplash.com";
+        licence = "Free to use";
+        licence_url = "https://unsplash.com/license";
+        key = "MzM2YjUyN2IyZTE4ZDA0NTA0NTgyMGI3ODA2MmI5NWM4MjUzNzYzMTEzMjZiMmEwOGY5YjkzZWVmN2VmYzA3Yg%3D%3D";
         // API call
-        uri = "https://api.unsplash.com/photos/" + id + "?client_id=336b527b2e18d045045820b78062b95c825376311326b2a08f9b93eef7efc07b";
         uri = "https://api.unsplash.com/photos/" + id + "?client_id=" + atob(decodeURIComponent(key));
 
-        $.getJSON(uri, function(result) {
-            console.log("@GB: result = ", result);
-            img_src = result.urls.regular;
-            console.log("@GB: img_src = ", img_src);
-            user = result.user.username;
-            user_url = result.user.links.html;
-            title = result.description;
-@@ -77,164 +142,224 @@ $(function() {
+        // API call
+        $.getJSON(uri, function(json) {
+            img_src = json.urls.regular;
+            user = json.user.username;
+            user_url = json.user.links.html;
+            title = json.description;
+            alt = json.alt_description;
+            download_lge = img_src.replace("&w=1080", "&w=1440");
             img_src = download_lge;
             download_sml = img_src.replace("&w=1440", "&w=720");
             buildHTML();
@@ -152,40 +156,26 @@ $(function() {
         // Get image ID
         re = /[0-9]+/gi;
         id = re.exec(img_orig)[0];
-        console.log("@GB: Pexels id = ", id);
 
         site_url = "https://pexels.com/";
-        licence = "Licence";
+        licence = "Free to use";
         licence_url = "https://www.pexels.com/license/";
-        api_key = "563492ad6f91700001000001bd31ce789c34409c931a6c42d10af8e5";
-        key = "563492ad6f91700001000001bd31ce789c34409c931a6c42d10af8e5";
+        key = "NTYzNDkyYWQ2ZjkxNzAwMDAxMDAwMDAxYmZlZmZkMDc3YmFmNDU0ZGFiMjlkNjMwMGJkZjc0MGQ%3D";
         uri = "https://api.pexels.com/v1/photos/" + id;
 
         // API call.   Using $.ajax as paxels requires authentication headers
         $.ajax({
             url: uri,
             dataType: 'json',
-            headers: { 'Authorization': api_key },
             headers: { 'Authorization': atob(decodeURIComponent(key)) },
-            success: function(data) {
-                console.log("@GB: data = ", data);
-                img_orig = data.src.original;
-                console.log("@GB: img_orig = ", img_orig);
-                img_orig = json.src.original;
-                img_src = img_orig + "?auto=compress&cs=tinysrgb&w=1440";
-                console.log("@GB: img_src = ", img_src);
-                user = data.photographer;
-                console.log("@GB: user = ", user);
-                user_url = data.photographer_url;
-                console.log("@GB: user_url = ", user_url);
-                alt = data.url.split("/")[4].split("-");
+            success: function(json) {
+                img_src = json.src.original;
+                img_src = img_src + "?auto=compress&cs=tinysrgb&w=1440";
                 user = json.photographer;
                 user_url = json.photographer_url;
                 alt = json.url.split("/")[4].split("-");
                 alt.pop();
                 alt = alt.join(" ");
-                console.log("@GB: alt = ", alt);
-                download_sml = img_orig + "?auto=compress&cs=tinysrgb&w=720";
                 download_sml = img_src + "?auto=compress&cs=tinysrgb&w=720";
                 download_lge = img_src;
                 buildHTML();
@@ -197,33 +187,24 @@ $(function() {
     // If I am Pixabay
     if (site == "Pixabay") {
 
+
         // Get image ID
         re = /[0-9]+/gi;
         id = re.exec(img_orig)[0];
-        console.log("@GB: Pixabay id = ", id);
 
         site_url = "https://pixabay.com/";
-        licence = "Licence";
+        licence = "Free to use";
         licence_url = "https://pixabay.com/service/license/";
-        api_key = "23200140-02ba1576bde9ce669f28784f8";
-        uri = "https://pixabay.com/api/?key=" + api_key + "&id=" + id;
-        key = "23200140-02ba1576bde9ce669f28784f8";
+        key = "MTE0NDUtN2MzZTMxNzNkNmY5YTYwNDdlNjQ1ODNjYQ%3D%3D";
         uri = "https://pixabay.com/api/?key=" + atob(decodeURIComponent(key)) + "&id=" + id;
 
         $.getJSON(uri, function() {})
-            .done(function(data) {
-                console.log("second success");
-                console.log("@GB: data = ", data.hits[0]);
-                img_src = data.hits[0].largeImageURL;
-                console.log("@GB: img_src = ", img_src);
-                user = data.hits[0].user;
+            .done(function(json) {
                 img_src = json.hits[0].largeImageURL;
                 user = json.hits[0].user;
                 user_url = "https://pixabay.com/users/" + user;
-                alt = data.hits[0].tags;
                 alt = json.hits[0].tags;
                 img_name = "Image";
-                download_sml = data.hits[0].webformatURL; // Small image 640px wide
                 download_sml = json.hits[0].webformatURL; // Small image 640px wide
                 download_lge = img_src; // Large image 1280px wide
                 buildHTML();
@@ -239,7 +220,7 @@ $(function() {
         id = re.exec(img_orig)[1];
 
         site_url = "https://www.flickr.com/";
-        key = "b45466a5c06951b75635590af7f465e0";
+        key = "MmJjNjJmYzJkYzRhYWVjMGZiMGQ1NjY0MGMzYThhMjA=";
         info_uri = "https://www.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=" + atob(decodeURIComponent(key)) + "&photo_id=" + id + "&format=json&&nojsoncallback=1";
         sizes_uri = "https://www.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=" + atob(decodeURIComponent(key)) + "&photo_id=" + id + "&format=json&&nojsoncallback=1";
 
@@ -298,33 +279,22 @@ $(function() {
         // Get image ID
         n = img_orig.lastIndexOf('/');
         id = img_orig.substring(n + 1);
-        console.log("@GB: Wikimedia file id = ", id);
 
         if (!id.includes('File:')) {
-            console.log("@GB: id does not include File: = ", id);
             id = "File:" + id;
         }
         site_url = "https://commons.wikimedia.org/";
-        uri = "https://en.wikipedia.org/w/api.php?action=query&format=json&prop=imageinfo&list=&meta=&iiprop=timestamp%7Cuser%7Cextmetadata%7Curl%7Cuserid&iilimit=1&iiurlwidth=1440&origin=*&titles=" + id;
-        console.log("@GB: uri = ", uri);
-
+        uri = "https://en.wikipedia.org/w/api.php?action=query&format=json&prop=imageinfo&list=&meta=&iiprop=timestamp%7Cuser%7Cextmetadata%7Curl%7Cuserid&iilimit=1&iiurlwidth=720&origin=*&titles=" + id;
 
         $.getJSON(uri, function() {})
             .done(function(data) {
                 json = data.query.pages[-1];
-                console.log("@GB: json = ", json);
                 img_src = json.imageinfo[0].thumburl;
-                console.log("@GB: img_src = ", img_src);
                 user = json.imageinfo[0].user;
                 user_url = "https://commons.wikimedia.org/wiki/User:" + user.replace(" ", "_");
-                console.log("@GB: user_url = ", user_url);
                 alt = json.imageinfo[0].extmetadata.ObjectName.value;
-                console.log("@GB: alt = ", alt);
                 img_name = "Image";
-                download_sml = img_src.replace("1440px", "720px"); // Small image 720px wide
-                console.log("@GB: download_sml = ", download_sml);
-                download_lge = img_src; // Large image 1440px wide
-                console.log("@GB: download_lge = ", download_lge);
+
                 download_lge = download_sml = img_src; // Small image 720px wide
 
                 if (json.imageinfo[0].thumbwidth >= 720) {
@@ -333,52 +303,70 @@ $(function() {
                 }
 
                 licence = json.imageinfo[0].extmetadata.LicenseShortName.value;
-                console.log("@GB: licence = ", licence);
 
-                // Exception for public domain images    
+                // Exception for public domain images
                 try {
                     licence_url = json.imageinfo[0].extmetadata.LicenseUrl.value;
                 } catch (error) {
                     console.error("Error: " + error);
-                    // expected output: ReferenceError: nonExistentFunction is not defined
-                    // Note - error messages will vary depending on browser
                     licence_url = "https://en.wikipedia.org/wiki/Public_domain";
                 }
-                console.log("@GB: licence_url = ", licence_url);
 
                 id = id.slugify();
-                console.log("@GB: Sluggified id = ", id);
                 buildHTML();
                 logger(json);
             });
     }
 
+    // If I am Shutterstock
+    // Until API is opened, get values from URL params
 
-   // Change relative image size for floated images
+    if (site == "Shutterstock") {
+        if (url.searchParams.get("id") == null) {
+            $('.bookmarklet-warning').show();
+            return false;
+        }
+        user = url.searchParams.get("user");
+        user_url = url.searchParams.get("user_url");
+        user = url.searchParams.get("user");
+        alt = url.searchParams.get("alt");
+        title = url.searchParams.get("title");
+        img_src = url.searchParams.get("img_src");
+        id = url.searchParams.get("id");
+        licence = "Used under licence with shutterstock.com";
+        licence_url = "https://www.shutterstock.com/license";
+        site_url = "https://www.shutterstock.com";
+
+        // Hide download buttons and cropper, as these make no sense for SS
+        $('.download').hide();
+        $('.cropper').hide();
+
+
+        $('.shutterstock-warning').show();
+        buildHTML();
+        logger();
+    }
+
+    // Change relative image size for floated images
     $('#resizer').change(function() {
         selected_id = $("input[name='options']:checked").attr('id');
         selected_val = $("input[name='options']:checked").attr('value');
-        console.log("@GB: selected_text = ", selected_val);
-        console.log("@GB: selected_id = ", selected_id);
         Cookies.set('cookieWidth', selected_id, { expires: 365, path: '' });
         $('.maker-floated>figure').removeClass(width);
         $('.maker-floated>figure').addClass(selected_id);
         $('.percent').text(selected_val);
         width = selected_id;
-        console.log("@GB: width = ", width);
     });
-
 
     // Change whether attribution is visible or collapsed (collapsed by default)
     $('#source-open').change(function() {
         selected_val = $("input[name='options']:checked").attr('value');
-        console.log("@GB: selected_val = ", selected_val);
 
         if (selected_val == "Shown") {
             startCollapsed = false;
             buildHTML();
         } else {
-            startCollapsed = false;
+            startCollapsed = true;
             buildHTML();
         }
 
@@ -387,17 +375,11 @@ $(function() {
 
 
     $('#embedder button').click(function(event) {
-        /* Act on the event */
-        // Cancel the default action
         event.preventDefault();
         var btn = $(this);
-        console.log("@GB: btn = ", btn);
         var closest = btn.prev('.maker-copy');
-        console.log("@GB: closest = ", closest);
         var id = "." + btn.attr('id');
-        console.log("@GB: id = ", id);
         var paste = $(id).html();
-        console.log("@GB: paste = ", paste);
 
         // If Cropped, replace image in embed code with dummy image
         if (id == ".maker-cropped") {
@@ -410,12 +392,8 @@ $(function() {
         }
         console.log("@GB: Copied HTML = ", paste);
         copyTextToClipboard(paste);
-
-
         btn.toggleClass('btn-outline-primary btn-success');
         btn.html('<i class="fa fa-check" aria-hidden="true"></i> Done! Embed code copied to clipboard');
-
-
         window.setTimeout(function() {
             btn.html('<i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code');
             // btn.removeClass('btn-danger');
@@ -423,7 +401,6 @@ $(function() {
         }, 3000);
 
     });
-
 
     // Download appropriately sized image
     $('a.download').click(function(event) {
@@ -434,7 +411,6 @@ $(function() {
         if (title == "img-sml") {
             src = download_sml;
         }
-        console.log("@GB: download_url = ", src);
         if (title == "img-cropped") {
             src = $(".maker-cropped img").attr("src");
         }
@@ -444,20 +420,29 @@ $(function() {
 
         btn.toggleClass('btn-outline-primary btn-success');
         btn.html('<i class="fa fa-check" aria-hidden="true"></i> Done! Image downloaded');
+
         // Cancel the default action
         event.preventDefault();
     });
 
+
     // Return appropriate Embed Code snippet
-    function unsplashSnippet(i) {
-        var snippet =
-            `<img src="${img_src}" class="img-responsive img-fluid img-sml" alt="${alt}"${title!==null ? ` title="${title}"` : ''}>
-@@ -276,14 +406,87 @@ $(function() {
+    function embedSnippet(i) {
+        var snippet = `<img src="${img_src}" class="img-responsive img-fluid w-100" alt="${alt}"${title!==null ? ` title="${title}"` : ''}>
+<figcaption class="figure-caption text-muted small fw-lighter">
+    <small>${startCollapsed ? `
+        <!-- Start of Show/Hide interface, ID = ${id}-${i} -->
+        <a class="source-btn text-muted" data-toggle="collapse" href="#show-${id}-${i}" role="button" aria-expanded="false" aria-controls="show-${id}-${i}">&#9661; Show attribution</a>
+        <div class="source collapse m-0 p-0" id="show-${id}-${i}">` : ''}
+        <a href="${img_orig}" target="_blank">${img_name}</a> by <a href="${user_url}" target="_blank">${user}</a> on <a href="${site_url}" target="_blank">${site}</a>
+            <br><a href="${licence_url}" target="_blank">${licence}</a>. Added ${today} ${startCollapsed ? `</div>
+        <!-- End of Show/Hide interface, ID = ${id}-${i} -->` : ''}
+    </small>
 </figcaption>`;
         return snippet;
     }
 
-       // If Org = MP, return Melb Poly embed code
+    // If Org = MP, return Melb Poly embed code
     function mpSnippet(i) {
         var snippet = `<img src="${img_src}" class="img-responsive img-fluid w-100" alt="${alt}"${title!==null ? ` title="${title}"` : ''}>
 <figcaption class="figure-caption text-muted small fw-lighter">
@@ -472,10 +457,9 @@ $(function() {
         return snippet;
     }
 
-     // Build images into interface
+    // Build images into interface
     function buildHTML() {
         $('.maker-copy figure').each(function(index) {
-            snippet = unsplashSnippet(index);
             if (org == 'mp') {
                 // Use Melb Poly's attribution rules
                 if (site != "Wikimedia Commons") {
@@ -547,31 +531,31 @@ $(function() {
         return today;
     }
 
-     // log all console messages
+    // log all console messages
     function logger(json) {
-        console.groupCollapsed('@MPIA: Attribution maker values')
-        console.log("@MPIA: today = ",today)
-        console.log("@MPIA: site = ",site)
-        console.log("@MPIA: site_url = ",site_url)
-        console.log("@MPIA: id = ",id)
-        console.log("@MPIA: img_name = ",img_name)
-        console.log("@MPIA: img_orig = ",img_orig)
-        console.log("@MPIA: img_src = ",img_src)
-        console.log("@MPIA: download_sml = ",download_sml)
-        console.log("@MPIA: download_lge = ",download_lge)
-        console.log("@MPIA: alt = ",alt)
-        console.log("@MPIA: user = ",user)
-        console.log("@MPIA: user_url = ",user_url)
-        console.log("@MPIA: licence = ",licence)
-        console.log("@MPIA: licence_url = ",licence_url)
-        console.log("@MPIA: title = ",title)
-        console.log("@MPIA: startCollapsed = ",startCollapsed)
-        console.log("@MPIA: org = ",org)
-        console.log("@MPIA: width = ",width)
-        console.log("@MPIA: srcOriginal = ",srcOriginal)
-        console.log("@MPIA: cookieWidth = ",cookieWidth)
-        console.log("@MPIA: cookieCollapsed = ",cookieCollapsed)
-        console.log("@MPIA: json = ",json)
+        console.groupCollapsed('@GB: Attribution maker values')
+        console.log("@GB: today = ",today)
+        console.log("@GB: site = ",site)
+        console.log("@GB: site_url = ",site_url)
+        console.log("@GB: id = ",id)
+        console.log("@GB: img_name = ",img_name)
+        console.log("@GB: img_orig = ",img_orig)
+        console.log("@GB: img_src = ",img_src)
+        console.log("@GB: download_sml = ",download_sml)
+        console.log("@GB: download_lge = ",download_lge)
+        console.log("@GB: alt = ",alt)
+        console.log("@GB: user = ",user)
+        console.log("@GB: user_url = ",user_url)
+        console.log("@GB: licence = ",licence)
+        console.log("@GB: licence_url = ",licence_url)
+        console.log("@GB: title = ",title)
+        console.log("@GB: startCollapsed = ",startCollapsed)
+        console.log("@GB: org = ",org)
+        console.log("@GB: width = ",width)
+        console.log("@GB: srcOriginal = ",srcOriginal)
+        console.log("@GB: cookieWidth = ",cookieWidth)
+        console.log("@GB: cookieCollapsed = ",cookieCollapsed)
+        console.log("@GB: json = ",json)
         console.groupEnd()
     }
 
@@ -582,11 +566,15 @@ $(function() {
         document.body.appendChild(textArea);
         textArea.focus();
         textArea.select();
+
         try {
             var successful = document.execCommand('copy');
             var msg = successful ? 'successful' : 'unsuccessful';
+
         } catch (err) {
+
         }
+
         document.body.removeChild(textArea);
     }
 
@@ -597,7 +585,9 @@ $(function() {
             return;
         }
         navigator.clipboard.writeText(text).then(function() {
+
         }, function(err) {
+
         });
     }
 
@@ -615,24 +605,22 @@ $(function() {
             canvas.width = this.naturalWidth; // or 'width' if you want a special/scaled size
             canvas.height = this.naturalHeight; // or 'height' if you want a special/scaled size
             console.log("@GB: canvas.width = ", canvas.width);
-            console.log("@MPIA: canvas.width = ", canvas.width);
             canvas.getContext('2d').drawImage(this, 0, 0);
             var blob;
             blob = canvas.toDataURL("image/jpeg");
+
             var link = document.createElement('a');
             link.style = 'position: fixed; left -10000px;';
             link.href = blob;
 
             link.download = site + "-" + name + "-" + canvas.width + "x" + canvas.height + ".jpg";
             console.log("@GB: link.download = ", link.download);
-            console.log("@MPIA: link.download = ", link.download);
 
 
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
         };
-
     }
 
     // Sanitise text to remove HTML markup.
@@ -653,4 +641,5 @@ $(function() {
             .replace(/[^a-z0-9 ]/g, separator) // remove all chars not letters, numbers and spaces (to be replaced)
             .replace(/\s+/g, separator);
     };
+
 });
