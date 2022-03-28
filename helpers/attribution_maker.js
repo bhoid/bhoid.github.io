@@ -12,7 +12,7 @@ $(function() {
     let site = ""; // Image site
     let site_url = ""; // Primary site URL
     let id = ""; // Image ID
-    let img_name = "Photo"; // Image name.   Defualt to "Photo"
+    let img_name = "Image"; // Image name.   Default to "Image"
     let img_orig = ""; // Link to original image
     let img_src = ""; // src of image to be displayed in page
     let download_sml = ""; // Small image 720px wide
@@ -23,7 +23,7 @@ $(function() {
     let licence = ""; // Licence type, eg "Free to use|Public Domain|CC-BY" etc.
     let licence_url = ""; // Link to licence
     let title = null; //If tyhe image has a title, then this will be used
-    let startCollapsed = true; // Default to collapsed view
+    let startCollapsed = false; // Default to collapsed view
     let org = null; // to cater for organisation specific changes
     let width = "col-5"; // Default width for floated images
     let json = ""; // JSON Object returned by API call
@@ -129,7 +129,7 @@ $(function() {
         id = img_orig.substring(n + 1);
 
         site_url = "https://unsplash.com";
-        licence = "Free to use";
+        licence = "Licence";
         licence_url = "https://unsplash.com/license";
         key = "MzM2YjUyN2IyZTE4ZDA0NTA0NTgyMGI3ODA2MmI5NWM4MjUzNzYzMTEzMjZiMmEwOGY5YjkzZWVmN2VmYzA3Yg%3D%3D";
         // API call
@@ -158,7 +158,7 @@ $(function() {
         id = re.exec(img_orig)[0];
 
         site_url = "https://pexels.com/";
-        licence = "Free to use";
+        licence = "Licence";
         licence_url = "https://www.pexels.com/license/";
         key = "NTYzNDkyYWQ2ZjkxNzAwMDAxMDAwMDAxYmZlZmZkMDc3YmFmNDU0ZGFiMjlkNjMwMGJkZjc0MGQ%3D";
         uri = "https://api.pexels.com/v1/photos/" + id;
@@ -193,7 +193,7 @@ $(function() {
         id = re.exec(img_orig)[0];
 
         site_url = "https://pixabay.com/";
-        licence = "Free to use";
+        licence = "Licence";
         licence_url = "https://pixabay.com/service/license/";
         key = "MTE0NDUtN2MzZTMxNzNkNmY5YTYwNDdlNjQ1ODNjYQ%3D%3D";
         uri = "https://pixabay.com/api/?key=" + atob(decodeURIComponent(key)) + "&id=" + id;
@@ -435,7 +435,7 @@ $(function() {
         <a class="source-btn text-muted" data-toggle="collapse" href="#show-${id}-${i}" role="button" aria-expanded="false" aria-controls="show-${id}-${i}">&#9661; Show attribution</a>
         <div class="source collapse m-0 p-0" id="show-${id}-${i}">` : ''}
         <a href="${img_orig}" target="_blank">${img_name}</a> by <a href="${user_url}" target="_blank">${user}</a> on <a href="${site_url}" target="_blank">${site}</a>
-            <br><a href="${licence_url}" target="_blank">${licence}</a>. Added ${today} ${startCollapsed ? `</div>
+            <br><a href="${licence_url}" target="_blank">${licence}</a>, added on ${today} ${startCollapsed ? `</div>
         <!-- End of Show/Hide interface, ID = ${id}-${i} -->` : ''}
     </small>
 </figcaption>`;
