@@ -2,14 +2,11 @@
 <html lang="en">
 
 <head>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7CMJQYBRMJ"></script>
-    <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-7CMJQYBRMJ'); </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="#">
     <meta name="author" content="#">
-    <title>@BirdyOz: Image/YouTube embedder &amp; attribution maker</title>
+    <title>Bhoid: Image/YouTube embedder &amp; attribution maker</title>
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -18,7 +15,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark"> <a class="navbar-brand" href="#">@BirdyOz: Image/YouTube embedder &amp; attribution maker.</a> <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"> </button>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark"> <a class="navbar-brand" href="#">Bhoid: Image/YouTube embedder &amp; attribution maker.</a> <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"> </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item"> <a class="nav-link" href="#right">Float Right</a> </li>
@@ -50,7 +47,7 @@
             <div class="card card-body">
                 <h2>First time user?</h2>
                 <ol>
-                    <li><strong>Drag</strong> the following bookmarklet into your browers bookmark bar: <a class="bookmarklet" href="javascript:(function()%7Blet%20uri%20%3D%20'https%3A%2F%2Fbirdyoz.github.io%2Fhelpers%2Fattribution_maker%3Faddr%3D'%20%2B%20encodeURIComponent(document.location.href)%3B%0Aif%20(document.location.href.includes('shutterstock.com'))%20%7B%0A%20%20%20%20const%20json%20%3D%20document.querySelector('script%5Btype%3D%22application%2Fjson%22%5D').innerHTML%3B%0A%20%20%20%20const%20obj%20%3D%20JSON.parse(json)%3B%0A%20%20%20%20const%20asset%20%3D%20obj.props.pageProps.asset%3B%0A%20%20%20%20const%20id%20%3D%20asset.id%3B%0A%20%20%20%20const%20img_orig%20%3D%20asset.link%3B%0A%20%20%20%20const%20alt%20%3D%20asset.alt%3B%0A%20%20%20%20const%20title%20%3D%20asset.title%3B%0A%20%20%20%20const%20img_src%20%3D%20asset.displays%5B%221500W%22%5D.src%3B%0A%20%20%20%20const%20user%20%3D%20asset.contributor.publicInformation.displayName%3B%0A%20%20%20%20const%20user_url%20%3D%20asset.contributor.publicInformation.portfolioUrl%3B%0A%20%20%20%20let%20url_suffix%20%3D%20%22%26id%3D%22%2BencodeURIComponent(id)%2B%22%26img_orig%3D%22%2BencodeURIComponent(img_orig)%2B%22%26alt%3D%22%2BencodeURIComponent(alt)%2B%22%26title%3D%22%2BencodeURIComponent(title)%2B%22%26img_src%3D%22%2BencodeURIComponent(img_src)%2B%22%26user%3D%22%2BencodeURIComponent(user)%2B%22%26user_url%3D%22%2BencodeURIComponent(user_url)%3B%0A%20%20%20%20uri%20%3D%20uri%20%2B%20url_suffix%3B%0A%7D%0Awindow.open(uri%2C%20'_blank')%7D)()%3B">Attribution maker +</a>
+                    <li><strong>Drag</strong> the following bookmarklet into your browers bookmark bar: <a class="bookmarklet" href="javascript:(function()%7Blet%20uri%20%3D%20'https%3A%2F%bhoid.github.io%2Fhelpers%2Fattribution_maker%3Faddr%3D'%20%2B%20encodeURIComponent(document.location.href)%3B%0Aif%20(document.location.href.includes('shutterstock.com'))%20%7B%0A%20%20%20%20const%20json%20%3D%20document.querySelector('script%5Btype%3D%22application%2Fjson%22%5D').innerHTML%3B%0A%20%20%20%20const%20obj%20%3D%20JSON.parse(json)%3B%0A%20%20%20%20const%20asset%20%3D%20obj.props.pageProps.asset%3B%0A%20%20%20%20const%20id%20%3D%20asset.id%3B%0A%20%20%20%20const%20img_orig%20%3D%20asset.link%3B%0A%20%20%20%20const%20alt%20%3D%20asset.alt%3B%0A%20%20%20%20const%20title%20%3D%20asset.title%3B%0A%20%20%20%20const%20img_src%20%3D%20asset.displays%5B%221500W%22%5D.src%3B%0A%20%20%20%20const%20user%20%3D%20asset.contributor.publicInformation.displayName%3B%0A%20%20%20%20const%20user_url%20%3D%20asset.contributor.publicInformation.portfolioUrl%3B%0A%20%20%20%20let%20url_suffix%20%3D%20%22%26id%3D%22%2BencodeURIComponent(id)%2B%22%26img_orig%3D%22%2BencodeURIComponent(img_orig)%2B%22%26alt%3D%22%2BencodeURIComponent(alt)%2B%22%26title%3D%22%2BencodeURIComponent(title)%2B%22%26img_src%3D%22%2BencodeURIComponent(img_src)%2B%22%26user%3D%22%2BencodeURIComponent(user)%2B%22%26user_url%3D%22%2BencodeURIComponent(user_url)%3B%0A%20%20%20%20uri%20%3D%20uri%20%2B%20url_suffix%3B%0A%7D%0Awindow.open(uri%2C%20'_blank')%7D)()%3B">bhoid (MP) Attribution maker +</a>
                         <br>(Note: Make sure you drag the link onto your browser bookmarks. Clicking will just bring you back to here)</li>
                     <li>Vist any of the supported sites, listed above</li>
                     <li>Click on the 'Attribution maker' in your bookmarks</li>
