@@ -181,8 +181,8 @@ $(function() {
         n = am.url.lastIndexOf('/');
         am.id = am.url.substring(n + 1);
         // oldkey = "MzM2YjUyN2IyZTE4ZDA0NTA0NTgyMGI3ODA2MmI5NWM4MjUzNzYzMTEzMjZiMmEwOGY5YjkzZWVmN2VmYzA3Yg%3D%3D";
-        // GBkey = "STJMT3JlREVmUWlWQUtFUTBEOHZfVXM4clUtNUloRlFDbWNsUnZ5RzFYdw=="
-        key = "b1y1xur1UpReQWujtFax_T1HrTCVZrUQrwGRgNmcUkI";
+        key = "STJMT3JlREVmUWlWQUtFUTBEOHZfVXM4clUtNUloRlFDbWNsUnZ5RzFYdw=="
+        // SBkey = "b1y1xur1UpReQWujtFax_T1HrTCVZrUQrwGRgNmcUkI";
         // API call
         uri = "https://api.unsplash.com/photos/" + am.id + "?client_id=" + atob(decodeURIComponent(key));
 
