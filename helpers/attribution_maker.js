@@ -618,8 +618,8 @@ $(function() {
         <!-- Start of Show/Hide interface, ID = ${am.id}-${i} -->
         <a class="source-btn text-muted" data-toggle="collapse" href="#show-${am.id}-${i}" role="button" aria-expanded="false" aria-controls="show-${am.id}-${i}">&#9661; Show attribution</a>
         <div class="source collapse m-0 p-0" id="show-${am.id}-${i}">` : ''}
-        <a href="${am.url}" target="_blank">${am.site.type}</a> by <a href="${am.attribution.userUrl}" target="_blank">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>
-            <br><a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>. Added ${am.today} ${am.prefs.collapsed ? `</div>
+        <a href="${am.url}" target="_blank">${am.site.type}</a> by <a href="${am.attribution.userUrl}" target="_blank">${am.attribution.username}</a> from <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>
+            <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>. Added ${am.today} ${am.prefs.collapsed ? `</div>
         <!-- End of Show/Hide interface, ID = ${am.id}-${i} -->` : ''}
     </small>
 </figcaption>
@@ -631,7 +631,7 @@ $(function() {
     function mpSnippet(i) {
         let snippet = `<img src="${am.image.preview}" class="img-responsive img-fluid w-100" alt="${am.image.alt}"${am.title!==null ? ` title="${am.title}"` : ''}>
 <figcaption class="figure-caption text-muted small fw-lighter">
-    <small><a href="${am.url}" target="_blank">Image</a> by <a href="${am.attribution.userUrl}" target="_blank">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>, <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>, added on ${am.today}</small>
+    <small><a href="${am.url}" target="_blank">Image</a> by <a href="${am.attribution.userUrl}" target="_blank">${am.attribution.username}</a> from <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>, <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>, added on ${am.today}</small>
 </figcaption>
 `;
         return snippet;
