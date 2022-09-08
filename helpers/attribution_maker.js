@@ -51,23 +51,23 @@ $(function() {
     const supported = [{
         name: "Unsplash",
         baseurl: "unsplash.com",
-        type: "Photo",
+        type: "Image",
         siteurl: "https://unsplash.com/?utm_source=image_attribution_maker_by_birdyoz&utm_medium=referral",
-        licence: "Free to use",
+        licence: "Licence",
         licenceurl: "https://unsplash.com/license"
     }, {
         name: "Pixabay",
         baseurl: "pixabay.com",
         type: "Image",
         siteurl: "https://pixabay.com/",
-        licence: "Free to use",
+        licence: "Licence",
         licenceurl: "https://pixabay.com/service/license/"
     }, {
         name: "Pexels",
         baseurl: "pexels.com",
-        type: "Photo",
+        type: "Image",
         siteurl: "https://pexels.com/",
-        licence: "Free to use",
+        licence: "Licence",
         licenceurl: "https://www.pexels.com/license/"
     }, {
         name: "Wikimedia Commons",
@@ -79,7 +79,7 @@ $(function() {
     }, {
         name: "Shutterstock",
         baseurl: "shutterstock.com",
-        type: "Photo",
+        type: "Image",
         siteurl: "https://www.shutterstock.com",
         licence: "Used under licence with shutterstock.com",
         licenceurl: "https://www.shutterstock.com/license"
@@ -93,7 +93,7 @@ $(function() {
     }, {
         name: "Flickr CC",
         baseurl: "flickr.com",
-        type: "Photo",
+        type: "Image",
         siteurl: "https://www.flickr.com/search/?license=2%2C3%2C4%2C5%2C6%2C9",
         licence: "",
         licenceurl: ""
@@ -485,7 +485,7 @@ $(function() {
             am.prefs.collapsed = false;
             buildHTML();
         } else {
-            am.prefs.collapsed = true;
+            am.prefs.collapsed = false;
             buildHTML();
         }
     });
