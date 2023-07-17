@@ -46,7 +46,7 @@ $(function() {
             org: null,
             cols: "col-5",
             percent: "42",
-            collapsed: true,
+            collapsed: false,
             layout: "bootstrap",
             classes: ["border", "bg-light"]
         },
