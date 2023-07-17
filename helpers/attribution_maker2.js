@@ -200,21 +200,14 @@ $(function() {
         // Detect organisation.
         // Allows for different attribution 'recipes' for different organsiations (eg MP).
         am.prefs.org = url.searchParams.get("org");
+        am.prefs.layout = url.searchParams.get("layout");
 
-        if (am.prefs.org === "uom") {
-            am.prefs.layout = "vanilla";
-            $("#bootstrap").addClass("invisible");
-            // $("#overlay-container").hide();
-            // Show UoM bookmarklet
-            $("#uom-bookmark").show();
-            $("#am-bookmark").hide();
-        }
-
+        
         // If I am Melb Poly, UoM or Vanilla, do not allow attribution to be collpased.
         if (am.prefs.org === "mp" || am.prefs.layout === "vanilla") {
-            // am.prefs.collapsed = false;
-            // $("#collapser").addClass("d-none");
-            // $("#collapser").removeClass("d-inline-block");
+            am.prefs.collapsed = false;
+            $("#collapser").addClass("d-none");
+            $("#collapser").removeClass("d-inline-block");
             $(".bootstrap-only").hide();
         }
 
